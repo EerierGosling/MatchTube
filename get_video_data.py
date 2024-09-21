@@ -61,11 +61,11 @@ def get_video_data(video_ids):
     # Return the video data list
     return video_data_list
 
-name = 'sofia'
+name = 'sophia'
 
 folder_path = f'user_data/{name}/'
 
-video_ids = get_video_ids(folder_path + 'watch-history.html')
+video_ids = get_video_ids(folder_path)
 
 all_video_data = []
 
