@@ -1,15 +1,16 @@
 import re
 import zipfile
-import glob
-import os
+import io
 
-def get_video_ids(folder_path):
+def get_video_ids(file):
 
-    zip_file = glob.glob(os.path.join(folder_path, '*.zip'))[0]
+    # zip_file = glob.glob(os.path.join(folder_path, '*.zip'))[0]
 
     target_file_suffix = '/YouTube and YouTube Music/history/watch-history.html'
 
-    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+    file_content = io.BytesIO(file.read())
+
+    with zipfile.ZipFile(file_content, 'r') as zip_ref:
         # Find the target file by checking if any file ends with the target suffix
         target_file = None
         for file in zip_ref.namelist():
