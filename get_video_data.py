@@ -61,7 +61,11 @@ def get_video_data(video_ids):
     # Return the video data list
     return video_data_list
 
-video_ids = get_video_ids('sophia/watch-history.html')
+name = 'sofia'
+
+folder_path = f'user_data/{name}/'
+
+video_ids = get_video_ids(folder_path + 'watch-history.html')
 
 all_video_data = []
 
@@ -70,5 +74,5 @@ for i in range(0, min(1000, len(video_ids)), 50):
     all_video_data.extend(get_video_data(video_ids[i:i+50]))
 
 # Save the data to a JSON file
-with open('sophia/video_data.json', 'w') as json_file:
+with open(folder_path + 'video_data.json', 'w') as json_file:
     json.dump(all_video_data, json_file, indent=4)
