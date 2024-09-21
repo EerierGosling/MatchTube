@@ -39,6 +39,9 @@ def upload_user_data(user_id: str, video_data: list[dict]) -> None:
     :param user_id: The user's unique identifier (username, etc.).
     :param video_data: A list of dictionaries containing video details. Each video should have keys 'title', 'channel_title', 'description', and 'tags'.
     """
+
+    print("starting upload")
+
     # Extract and concatenate video details (title, channel_title, description, and tags)
     video_texts = [
         f"{video['title']} {video['channel_title']} {video['description']} {' '.join(video['tags'])}"
@@ -57,8 +60,11 @@ def upload_user_data(user_id: str, video_data: list[dict]) -> None:
         "user_embedding": user_embedding.tolist(),  # Convert to list for MongoDB
     }
 
+    print("starting actual upload")
+
     # Upload the embeddings to MongoDB
     collection.update_one({"user_id": user_id}, {"$set": user_data}, upsert=True)
+    print("uploaded :D")
 
 
 # Function to get the embedding of a specific user
