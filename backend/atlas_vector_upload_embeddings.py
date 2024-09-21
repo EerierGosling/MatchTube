@@ -47,23 +47,23 @@ def process_user_data(user_id, video_data):
     user_embedding = np.mean(video_embeddings, axis=0)
 
     # Prepare the data for MongoDB
-    updated_videos = [
-        {
-            "title": video["title"],
-            "channel_title": video["channel_title"],
-            "description": video["description"],
-            "tags": video["tags"],
-            "embedding": video_embeddings[
-                i
-            ].tolist(),  # Convert to list for storage in MongoDB
-        }
-        for i, video in enumerate(video_data)
-    ]
+    # updated_videos = [
+    #     {
+    #         "title": video["title"],
+    #         "channel_title": video["channel_title"],
+    #         "description": video["description"],
+    #         "tags": video["tags"],
+    #         "embedding": video_embeddings[
+    #             i
+    #         ].tolist(),  # Convert to list for storage in MongoDB
+    #     }
+    #     for i, video in enumerate(video_data)
+    # ]
 
     # Store the overall user embedding
     user_data = {
         "user_id": user_id,
-        "videos": updated_videos,
+        # "videos": updated_videos,
         "user_embedding": user_embedding.tolist(),  # Convert to list for MongoDB
     }
 
