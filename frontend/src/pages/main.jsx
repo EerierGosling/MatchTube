@@ -35,15 +35,12 @@ export default function Layout() {
             className="flex flex-col justify-center items-center mt-5"
           >
             <img 
-              src='logoyoutube.png'
-              className="w-52"
+              src='logo2.png'
+              className="w-3/5"
             />
-            <h1
-              className="text-2xl"
-            >MatchTube
-            </h1>
+          
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-16">
             <div 
               id="profile"
               className="mt-5 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center">
@@ -58,17 +55,14 @@ export default function Layout() {
                   <div 
                     id="about"
                     className="p-2">
-                    <h1 className="text-xl">Likes: </h1>
-                    <h1 className="text-xl">Recently Watched: </h1>
+                    <h1 className="text-xl">Bio: </h1>
                   </div>
               </div>
             </div>
-            <div 
-                id="arrow">
-                <p
-                className="text-7xl text-tinderOrange mx-16 transform -translate-x-8">
-                 &#10097;
-                </p>
+            <div id="arrow">
+              <p className="text-7xl text-tinderOrange mx-16 transform md:-translate-x-8 rotate-90 md:rotate-0">
+                &#10095;
+              </p>
             </div>
             <div 
               id="matchProfile"
@@ -84,8 +78,7 @@ export default function Layout() {
                   <div 
                     id="about"
                     className="p-2">
-                    <h1 className="text-xl">Likes: </h1>
-                    <h1 className="text-xl">Recently Watched: </h1>
+                    <h1 className="text-xl">Bio: </h1>
                   </div>
               </div>
             </div>
@@ -100,7 +93,7 @@ export default function Layout() {
           </div>
           <div 
             id='matchInfo'
-            className='w-1/2 mt-10'>
+            className='w-4/5 md:w-1/2 mt-10 mb-6'>
             <p id='reason' className="text-xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
           </div>
