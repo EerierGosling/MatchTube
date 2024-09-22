@@ -22,7 +22,7 @@ const TakeoutUpload = () => {
         formData.append('file', selectedFile);
 
         try {
-            const response = await fetch('http://localhost:5001/upload', {
+            const response = await fetch('https://pennapps-project.onrender.com/upload', {
                 method: 'POST',
                 body: formData,
             });
