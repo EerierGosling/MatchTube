@@ -3,7 +3,7 @@ from routes import init_routes  # Import your routes
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # This will allow all domains; customize it for production
+CORS(app, resources={r"/*": {"origins": "https://matchtube.xyz"}})
 
 # Initialize routes
 init_routes(app)
