@@ -50,7 +50,7 @@ const Main = withAuthInfo((props) => {
         match.pictureUrl;
 
     const arrow = document.getElementById('arrow');
-    arrow.classList.add('transition', 'duration-300', 'transform', 'translate-x-16', 'ease-in-out');
+    arrow.classList.add('transition', 'duration-300', 'transform', 'md:-translate-y-0', 'translate-y-8', 'md:translate-x-16', 'ease-in-out');
 
     setTimeout(() => {
       document.getElementById('matchProfile').style.visibility = 'visible';
@@ -74,7 +74,7 @@ const Main = withAuthInfo((props) => {
             />
           
           </div>
-          <div className="flex justify-center items-center mt-16">
+          <div className="flex flex-col md:flex-row justify-center items-center mt-16">
             <div 
               id="profile"
               className="mt-5 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center">
