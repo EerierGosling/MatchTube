@@ -14,14 +14,14 @@ So, we created MatchTube--the ultimate Tinder x Youtube crossover. Find matches 
 ## Technologies
 
 ### Frontend
-- [React JS Framework](https://react.dev/)
-- Javascript
-- [Tailwind CSS](https://tailwindcss.com/)
+- [React JS Framework](https://react.dev/): Served as main framework for frontend
+- Javascript: Used for frontend functionality
+- [Tailwind CSS](https://tailwindcss.com/): Used as a CSS Framework
 - (some) HTML
   
 ### Backend
-- Python
-- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
-- [PropelAuth](https://www.propelauth.com/): used for user login
-- [Youtube API](https://developers.google.com/youtube/v3): to get user watch history data
-- [Sentence transformers](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+- Python: Used for backend
+- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database): To store vectors and to compare user's Youtube data
+- [PropelAuth](https://www.propelauth.com/): Used for user login
+- [Youtube API](https://developers.google.com/youtube/v3): To get user watch history data
+- [Sentence transformers](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2): Breaks down data
