@@ -31,7 +31,7 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         fetch('https://pennapps-project.onrender.com/upload', 
             {
-                method: 'GET',
+                method: 'POST',
                 body: formData
             }
         )

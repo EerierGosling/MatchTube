@@ -4,7 +4,7 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/takeout": {"origins": "https://matchtube.xyz/"}})
 
 # Initialize routes
 init_routes(app)
