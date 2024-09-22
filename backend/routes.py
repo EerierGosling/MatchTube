@@ -7,10 +7,6 @@ from atlas_vector import upload_user_data, find_closest_user
 # Initialize routes with the Flask app
 def init_routes(app):
 
-    @app.route('/')
-    def serve_react_app():
-        return send_from_directory(app.static_folder, 'index.html')
-
     # Route for file uploads
     @app.route('/takeout', methods=['POST'])
     def upload_file():
