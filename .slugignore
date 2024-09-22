@@ -1,0 +1,28 @@
+# Exclude Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Exclude environment files
+.env
+*.env
+
+# Exclude local test files and directories
+tests/
+test/
+*.test.py
+
+# Exclude documentation files
+docs/
+*.md
+
+# Exclude large datasets or static files
+data/
+static/
+assets/
+
+# Exclude git files
+.git/
+.gitignore
+
+frontend/
