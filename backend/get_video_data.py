@@ -71,13 +71,3 @@ def get_video_data(all_video_ids):
         all_video_data.extend(video_data_list)
 
     return all_video_data
-
-# name = 'sophia'
-
-# folder_path = f'user_data/{name}/'
-
-# video_ids = get_video_ids(folder_path)
-
-# # Save the data to a JSON file
-# with open(folder_path + 'video_data.json', 'w') as json_file:
-#     json.dump(all_video_data, json_file, indent=4)

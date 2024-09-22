@@ -22,25 +22,15 @@ def init_routes(app):
     @app.route('/takeout', methods=['POST'])
     def upload_file():
 
-        print(request.form)
-
-        print("got post")
-
         file = request.files.get('file')
         email = request.form.get('email')
 
-        print(email)
-
         if not file or not email:
             return jsonify({'message': 'no email or no file'}), 400
-
-        print("got stuff")
         
         # Check if the file has a name
         if file.filename == '':
             return jsonify({'message': 'No selected file'}), 400
-        
-        print("got filename")
 
         # Pass the file to the processing function
         upload_user_data(email, get_video_data(get_video_ids(file)))

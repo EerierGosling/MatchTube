@@ -38,11 +38,3 @@ def get_video_ids(file):
             seen.add(match)
     
     return unique_matches
-
-# # Write the unique matches to the output file
-# with open('video_ids.txt', 'w') as output_file:
-#     for match in unique_matches:
-#         output_file.write(match + '\n')
-
-# # Print the unique matches
-# print(unique_matches)

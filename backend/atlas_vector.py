@@ -38,7 +38,7 @@ def upload_user_data(user_id: str, video_data: list[dict]) -> None:
     :param video_data: A list of dictionaries containing video details. Each video should have keys 'title', 'channel_title', 'description', and 'tags'.
     """
 
-    print("starting upload")
+    print("creating embeddings")
 
     # Extract and concatenate video details (title, channel_title, description, and tags)
     video_texts = [
@@ -58,11 +58,11 @@ def upload_user_data(user_id: str, video_data: list[dict]) -> None:
         "user_embedding": user_embedding.tolist(),  # Convert to list for MongoDB
     }
 
-    print("starting actual upload")
+    print("uploading")
 
     # Upload the embeddings to MongoDB
     collection.update_one({"user_id": user_id}, {"$set": user_data}, upsert=True)
-    print("uploaded :D")
+    print("uploaded!")
 
 
 # Function to get the embedding of a specific user
@@ -95,10 +95,8 @@ def _find_closest_user(target_user_id, target_embedding):
     if closest_user:
         if closest_user[0]["user_id"] == target_user_id:
             closest_user.pop(0)
-        # print(f"The closest user to {target_user_id} is {closest_user[0]['user_id']}.")
         return closest_user[0]["user_id"]
     else:
-        # print("No closest user found.")
         return None
 
 

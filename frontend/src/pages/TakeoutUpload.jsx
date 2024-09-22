@@ -31,8 +31,6 @@ const TakeoutUpload = withAuthInfo((props) => {
         formData.append('file', selectedFile);
         formData.append('email', props.user.email)
 
-        console.log(formData)
-
         try {
             const response = await fetch(`http://localhost:5001/takeout`, 
                 {
@@ -41,23 +39,20 @@ const TakeoutUpload = withAuthInfo((props) => {
                 }
             )
         } catch (error) {
-            console.log("oh well")
+            console.log("takeout post failed")
         }
 
         try {
             await wait(10000);
-            console.log("trying")
             const response = await fetch(`http://localhost:5001/user/${props.user.email}`)
-
             const data = await response.json();
 
             if (data.closest_user) {
-                console.log("navigating")
                 navigate("/match");
             }
         }
         catch (error) {
-            console.log("oh well 2")
+            console.log("get closest user failed")
         }
 
     };

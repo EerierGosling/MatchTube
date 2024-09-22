@@ -20,26 +20,20 @@ const Main = withAuthInfo((props) => {
       return;
     }
 
-    console.log("Matching...");
     // Send a get request to https://pennapps-project.onrender.com/user/{props.user.email}
     // The response will be the email of a match
     fetch(`http://localhost:5001/user/${props.user.email}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Match data:", data);
-        console.log("Match email:", data.closest_user);
         const matchEmail = data.closest_user;
         setEmail(matchEmail);
-        console.log(matchEmail);
-        console.log("setEmail");
-  
+
         // Use matchEmail directly instead of waiting for state update
         fetch(`http://localhost:5001/user-info/${matchEmail}`)
           .then((response) => response.json())
           .then((data) => {
             setName(data.name);
             setPfp(data.profile_picture_url);
-            console.log(pfp)
           })
           .catch((error) => {
             console.error("Error fetching match data:", error);
@@ -48,23 +42,9 @@ const Main = withAuthInfo((props) => {
       .catch((error) => {
         console.error("Error fetching match email:", error);
       });
-    // let match = auth.fetchUserMetadataByEmail(
-    //     "sofiacegan@gmail.com",
-    //     true // includeOrgs
-    // );
-    // console.log(match);
-
-    // document.getElementById("matchProfile").querySelector("img").src =
-    //     match.pictureUrl;
 
     const arrow = document.getElementById('arrow');
     arrow.classList.add('transition', 'duration-300', 'transform', 'md:-translate-y-0', 'translate-y-8', 'md:translate-x-16', 'ease-in-out');
-
-    setTimeout(() => {
-
-      // document.getElementById('reason').style.visibility = 'visible';
-    }, 400);
-    setMatched(true);
   }
 
   return (
