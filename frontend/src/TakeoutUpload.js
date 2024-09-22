@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropelAuth from './components/PropelAuth';
 
 const TakeoutUpload = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -35,6 +36,7 @@ const TakeoutUpload = () => {
 
     return (
         <div className='flex-col min-h-screen w-full bg-cover bg-gradient-to-r from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center'> 
+            <PropelAuth />
             <img 
                 src="logo2.png" 
                 className='w-3/4 md:w-1/3 mb-8'
