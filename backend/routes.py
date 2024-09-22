@@ -8,7 +8,7 @@ from atlas_vector import upload_user_data, find_closest_user
 def init_routes(app):
 
     # Route for file uploads
-    @app.route('/upload', methods=['POST'])
+    @app.route('/upload', methods=['GET'])
     def upload_file():
 
         print(request.form)
