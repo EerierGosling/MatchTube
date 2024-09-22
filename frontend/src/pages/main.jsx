@@ -93,7 +93,7 @@ export default function Layout() {
           <div id='button'>
             <button 
               id='matchButton'
-              className="transition ease-in-out bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-300 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange p-2 px-4 mt-5 text-white text-xl"
+              className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange p-2 px-4 mt-5 text-white text-xl"
               onClick={matchMe}
               >Match Me!
             </button>

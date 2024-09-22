@@ -34,13 +34,29 @@ const TakeoutUpload = () => {
     };
 
     return (
-        <div>
-            <h1>File Upload</h1>
-            <form onSubmit={onFileUpload}>
-                <input type="file" onChange={onFileChange} />
-                <button type="submit">Upload</button>
-            </form>
-            {responseMessage && <p>{responseMessage}</p>}
+        <div className='flex-col min-h-screen w-full bg-cover bg-gradient-to-r from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center'> 
+            <img 
+                src="logo2.png" 
+                className='w-1/3 mb-8'
+            />
+            <div className='bg-white rounded-2xl w-1/2 p-8 flex flex-col items-center justify-center'>
+
+                <h1 className='text-2xl'>Upload to Get Started!</h1>
+                <div className='flex justify-center items-center'>
+                    <form onSubmit={onFileUpload} className='flex flex-col mt-5'>
+                        <input 
+                        type="file" 
+                        onChange={onFileChange}
+                        className='file:transition file:ease-in-out file:hover:-translate-y-1 file:duration-300 file:border-none file:bg-gradient-to-r from-tinderPink via-tinderRed to-tinderOrange file:p-2 file:px-8 file:text-white text-xl file:mt-3 file:rounded-xl'/>
+                        <button 
+                            className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 bg-gradient-to-r mt-5 rounded-xl from-tinderPink via-tinderRed to-tinderOrange p-2 px-8 text-white text-xl"
+                            type="submit"
+                            >Upload
+                        </button>
+                    </form>
+                </div>
+                {responseMessage && <p>{responseMessage}</p>}
+            </div>
         </div>
     );
 };
