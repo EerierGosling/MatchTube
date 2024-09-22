@@ -30,7 +30,7 @@ const TakeoutUpload = withAuthInfo((props) => {
         console.log(formData)
 
         try {
-            const response = await fetch('http://10.226.242.111:5001/upload', { //https://pennapps-project.onrender.com
+            const response = await fetch('https://pennapps-project.onrender.com/upload', { //https://pennapps-project.onrender.com
                 method: 'POST',
                 body: formData,
             });
