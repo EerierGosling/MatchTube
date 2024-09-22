@@ -9,7 +9,7 @@ def create_app():
     app.config.from_pyfile('config.py', silent=True)
 
     # Initialize PropelAuth
-    auth = init_auth({
+    auth = init_base_auth({
         'auth_url': os.getenv('PROPELAUTH_AUTH_URL'),
         'api_key': os.getenv('PROPELAUTH_API_KEY'),
     })

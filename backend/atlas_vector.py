@@ -26,8 +26,6 @@ try:
     )
     db = client["matchtube"]  # Replace with your actual database name
     collection = db["youtube"]  # Replace with your collection name
-except errors.ConnectionError as e:
-    raise RuntimeError(f"Error connecting to MongoDB Atlas: {e}")
 except errors.ConfigurationError as e:
     raise RuntimeError(f"Configuration error with MongoDB Atlas: {e}")
 
