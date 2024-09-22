@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <RequiredAuthProvider
-        authUrl={process.env.REACT_APP_AUTH_URL}
+        authUrl="https://auth.matchtube.xyz"
         // displayWhileLoading={<Loading />}
         displayIfLoggedOut={<RedirectToLogin />}>
         <Router>
