@@ -1,8 +1,8 @@
 from flask import request, jsonify
 
-from .get_video_data import get_video_data
-from .parse_takeout import get_video_ids
-from .atlas_vector import upload_user_data
+from backend.get_video_data import get_video_data
+from backend.parse_takeout import get_video_ids
+from backend.atlas_vector import upload_user_data
 
 # Initialize routes with the Flask app
 def init_routes(app):

@@ -1,5 +1,5 @@
 from flask import Flask
-from .routes import init_routes  # Import your routes
+from backend.routes import init_routes  # Import your routes
 
 app = Flask(__name__)
 
