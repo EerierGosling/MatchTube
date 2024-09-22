@@ -18,7 +18,7 @@ def create_app():
     app.auth = auth
 
     # Import and register blueprints
-    from backend.routes import main as main_blueprint
+    from routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     return app
