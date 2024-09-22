@@ -29,11 +29,11 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         console.log(formData)
 
-        fetch('https://pennapps-project.onrender.com/upload', 
-            {
-                method: 'POST',
-                body: formData
-            }
+        fetch('https://pennapps-project.onrender.com/user/sofia', 
+            // {
+            //     method: 'POST',
+            //     body: formData
+            // }
         )
     };
 
