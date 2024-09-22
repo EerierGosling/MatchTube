@@ -20,6 +20,8 @@ const Main = withAuthInfo((props) => {
       return;
     }
 
+    console.log(matched)
+
     // Send a get request to https://pennapps-project.onrender.com/user/{props.user.email}
     // The response will be the email of a match
     fetch(`http://localhost:5001/user/${props.user.email}`)
@@ -42,6 +44,8 @@ const Main = withAuthInfo((props) => {
       .catch((error) => {
         console.error("Error fetching match email:", error);
       });
+
+    setMatched(true);
 
     const arrow = document.getElementById('arrow');
     arrow.classList.add('transition', 'duration-300', 'transform', 'md:-translate-y-0', 'translate-y-8', 'md:translate-x-16', 'ease-in-out');
