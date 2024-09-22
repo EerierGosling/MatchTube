@@ -34,7 +34,7 @@ const TakeoutUpload = withAuthInfo((props) => {
         console.log(formData)
 
         try {
-            const response = await fetch(`http://localhost:5001/takeout`, 
+            const response = await fetch(`https://pennapps-project.onrender.com/takeout`, 
                 {
                     method: 'POST',
                     body: formData
@@ -47,7 +47,7 @@ const TakeoutUpload = withAuthInfo((props) => {
         try {
             await wait(10000);
             console.log("trying")
-            const response = await fetch(`http://localhost:5001/user/${props.user.email}`)
+            const response = await fetch(`https://pennapps-project.onrender.com/user/${props.user.email}`)
 
             const data = await response.json();
 
