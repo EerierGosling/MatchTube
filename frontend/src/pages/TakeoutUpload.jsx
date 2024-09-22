@@ -29,7 +29,7 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         console.log(formData)
 
-        fetch('https://pennapps-project.onrender.com/takeout', 
+        fetch(`${process.env.BACKEND_URL}}/takeout`, 
             {
                 method: 'POST',
                 body: formData
