@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { withAuthInfo, useAuthInfo } from "@propelauth/react";
 import "../App.css";
 import "../input.css";
@@ -6,40 +7,52 @@ import "../input.css";
 const Main = withAuthInfo((props) => {
   const auth = useAuthInfo();
 
-  setTimeout(() => {
-    hide(document.getElementById('matchProfile'));
-    hide(document.getElementById('reason'));
+  const [name, setName] = useState(null);
+  const [pfp, setPfp] = useState(null);
+  const [email, setEmail] = useState(null);
 
-  }, 50);
+  const [matched, setMatched] = useState(false);
 
-  function hide(thing) {
-    thing.style.visibility = 'hidden';
-  }
+  const mobileView = window.innerWidth < 768;
 
   function matchMe() {
+    if (matched) {
+      return;
+    }
+
+    console.log("Matching...");
     // Send a get request to https://pennapps-project.onrender.com/user/{props.user.email}
     // The response will be the email of a match
-    fetch(`https://pennapps-project.onrender.com/user/${props.user.email}`)
+    fetch(`http://127.0.0.1:5001/user/${props.user.email}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Match email:", data.closest_user);
-
-        document.getElementById('matchProfile').querySelector("email").innerText = data.closest_user;
-        // document.getElementById('matchProfile').querySelector("p").innerText = match.firstName + " " + match.lastName;
-        // document.getElementById('matchProfile').querySelector("img").src = match.pictureUrl;
+        const matchEmail = data.closest_user;
+        setEmail(matchEmail);
+        console.log(matchEmail);
+        console.log("setEmail");
+  
+        // Use matchEmail directly instead of waiting for state update
+        fetch(`http://127.0.0.1:5001/user-info/${matchEmail}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setName(data.name);
+            setPfp(data.profile_picture_url);
+            console.log(pfp)
+          })
+          .catch((error) => {
+            console.error("Error fetching match data:", error);
+          });
       })
       .catch((error) => {
         console.error("Error fetching match email:", error);
       });
-
     // let match = auth.fetchUserMetadataByEmail(
     //     "sofiacegan@gmail.com",
     //     true // includeOrgs
     // );
     // console.log(match);
 
-    // document.getElementById("matchProfile").querySelector("p").innerText =
-    //     match.firstName + " " + match.lastName;
     // document.getElementById("matchProfile").querySelector("img").src =
     //     match.pictureUrl;
 
@@ -47,9 +60,10 @@ const Main = withAuthInfo((props) => {
     arrow.classList.add('transition', 'duration-300', 'transform', 'md:-translate-y-0', 'translate-y-8', 'md:translate-x-16', 'ease-in-out');
 
     setTimeout(() => {
-      document.getElementById('matchProfile').style.visibility = 'visible';
+
       // document.getElementById('reason').style.visibility = 'visible';
     }, 400);
+    setMatched(true);
   }
 
   return (
@@ -68,7 +82,16 @@ const Main = withAuthInfo((props) => {
             />
           
           </div>
-          <div className="flex flex-col md:flex-row justify-center items-center mt-16">
+          <div id='button'>
+            <button 
+              id='matchButton'
+              className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange p-2 px-4 mt-5 text-white text-xl"
+              style={{height: '90px', width: '270px', fontSize: '2.7rem'}}
+              onClick={matchMe}
+              >Match Me!
+            </button>
+          </div>
+          <div className="flex flex-col md:flex-row justify-center items-center mt-16" style={{display:'flex', flexDirection: mobileView ? 'column' : 'row'}}>
             <div 
               id="profile"
               className="mt-5 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center">
@@ -77,10 +100,14 @@ const Main = withAuthInfo((props) => {
                 className="bg-white m-3 rounded-xl flex flex-col ">
                   <div 
                     id="profileImage" 
-                    className="bg-grey w-80 h-48 px-2 pt-6 flex items-end">
-                    <img src={props.user.pictureUrl} alt="profile" />
-                    <p className="text-3xl pb-1">{props.user.firstName + " " + props.user.lastName}</p>
+                    className="bg-grey w-80 h-80 px-0 pt-0 flex items-end">
+                    <img src={props.user.pictureUrl} alt="profile" style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover' 
+                      }}/>
                   </div>
+                  <p className="text-3xl pb-1 p-2 pt-3">{props.user.firstName + " " + props.user.lastName}</p>
                   <div 
                     id="email"
                     className="p-2">
@@ -95,39 +122,29 @@ const Main = withAuthInfo((props) => {
             </div>
             <div 
               id="matchProfile"
-              className="mt-5 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center">
+              className="mt-5 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange flex justify-center items-center"
+              style={{visibility:matched ? 'visible': 'hidden'}}>
               <div 
                 id="profile"
                 className="bg-white m-3 rounded-xl flex flex-col ">
                   <div 
                     id="profileImage" 
-                    className="bg-grey w-80 h-48 px-2 pt-6 flex items-end">
-                    <img src="" alt="profile" />
-                    <p className="text-3xl pb-1">Name</p>
+                    className="bg-grey w-80 h-80 px-0 pt-0 flex items-end">
+                    <img src={pfp} alt="profile" style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover' 
+                      }} />
                   </div>
+                  <p className="text-3xl pb-1 p-2 pt-3">{name}</p>
                   <div 
                     id="email"
                     className="p-2">
-                    <h1 className="text-xl">Email: </h1>
+                    <h1 className="text-xl">Email: {email}</h1>
                   </div>
               </div>
             </div>
           </div>
-          <div id='button'>
-            <button 
-              id='matchButton'
-              className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 bg-gradient-to-r rounded-xl from-tinderPink via-tinderRed to-tinderOrange p-2 px-4 mt-5 text-white text-xl"
-              onClick={matchMe}
-              >Match Me!
-            </button>
-          </div>
-          <div 
-            id='matchInfo'
-            className='w-4/5 md:w-1/2 mt-10 mb-6'>
-            <p id='reason' className="text-xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-          </div>
-            
         </div>
     </div>
   );

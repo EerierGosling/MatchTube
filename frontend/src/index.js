@@ -16,7 +16,7 @@ root.render(
         <Router>
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/main" element={<Main />} />
+                <Route path="/match" element={<Main />} />
             </Routes>
         </Router>
     </RequiredAuthProvider>,

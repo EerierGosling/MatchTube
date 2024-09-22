@@ -5,10 +5,14 @@ import {
     useRedirectFunctions,
     useLogoutFunction,
 } from "@propelauth/react";
+import { useNavigate } from "react-router-dom";
 
 const TakeoutUpload = withAuthInfo((props) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [responseMessage, setResponseMessage] = useState('');
+    const navigate = useNavigate();
+
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     // Handle file selection
     const onFileChange = (event) => {
@@ -29,12 +33,33 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         console.log(formData)
 
-        fetch(`${process.env.BACKEND_URL}}/takeout`, 
-            {
-                method: 'POST',
-                body: formData
+        try {
+            const response = await fetch(`http://localhost:5001/takeout`, 
+                {
+                    method: 'POST',
+                    body: formData
+                }
+            )
+        } catch (error) {
+            console.log("oh well")
+        }
+
+        try {
+            await wait(10000);
+            console.log("trying")
+            const response = await fetch(`http://localhost:5001/user/${props.user.email}`)
+
+            const data = await response.json();
+
+            if (data.closest_user) {
+                console.log("navigating")
+                navigate("/match");
             }
-        )
+        }
+        catch (error) {
+            console.log("oh well 2")
+        }
+
     };
 
     return (
