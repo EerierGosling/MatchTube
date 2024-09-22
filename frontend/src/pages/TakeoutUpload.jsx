@@ -41,6 +41,7 @@ const TakeoutUpload = withAuthInfo((props) => {
             }
             else {
                 console.log("uploaded!")
+                history.push('/main');
             }
             
         } catch (error) {
