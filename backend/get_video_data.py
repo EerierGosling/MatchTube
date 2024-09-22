@@ -70,8 +70,6 @@ def get_video_data(all_video_ids):
         # Return the video data list
         all_video_data.extend(video_data_list)
 
-    print(all_video_data)
-
     return all_video_data
 
 # name = 'sophia'
