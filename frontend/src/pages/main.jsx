@@ -23,31 +23,25 @@ const Main = withAuthInfo((props) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Match email:", data.closest_user);
-        
-        // Look up the match's profile
-        let match = auth.fetchUserMetadataByEmail(
-          "sofiacegan@gmail.com",
-          true // includeOrgs
-        );
-        console.log(match);
 
-        document.getElementById('matchProfile').querySelector("p").innerText = match.firstName + " " + match.lastName;
-        document.getElementById('matchProfile').querySelector("img").src = match.pictureUrl;
+        document.getElementById('matchProfile').querySelector("email").innerText = data.closest_user;
+        // document.getElementById('matchProfile').querySelector("p").innerText = match.firstName + " " + match.lastName;
+        // document.getElementById('matchProfile').querySelector("img").src = match.pictureUrl;
       })
       .catch((error) => {
         console.error("Error fetching match email:", error);
       });
 
-    let match = auth.fetchUserMetadataByEmail(
-        "sofiacegan@gmail.com",
-        true // includeOrgs
-    );
-    console.log(match);
+    // let match = auth.fetchUserMetadataByEmail(
+    //     "sofiacegan@gmail.com",
+    //     true // includeOrgs
+    // );
+    // console.log(match);
 
-    document.getElementById("matchProfile").querySelector("p").innerText =
-        match.firstName + " " + match.lastName;
-    document.getElementById("matchProfile").querySelector("img").src =
-        match.pictureUrl;
+    // document.getElementById("matchProfile").querySelector("p").innerText =
+    //     match.firstName + " " + match.lastName;
+    // document.getElementById("matchProfile").querySelector("img").src =
+    //     match.pictureUrl;
 
     const arrow = document.getElementById('arrow');
     arrow.classList.add('transition', 'duration-300', 'transform', 'md:-translate-y-0', 'translate-y-8', 'md:translate-x-16', 'ease-in-out');
@@ -88,9 +82,9 @@ const Main = withAuthInfo((props) => {
                     <p className="text-3xl pb-1">{props.user.firstName + " " + props.user.lastName}</p>
                   </div>
                   <div 
-                    id="about"
+                    id="email"
                     className="p-2">
-                    <h1 className="text-xl">Bio: </h1>
+                    <h1 className="text-xl">Email: {props.user.email}</h1>
                   </div>
               </div>
             </div>
@@ -112,9 +106,9 @@ const Main = withAuthInfo((props) => {
                     <p className="text-3xl pb-1">Name</p>
                   </div>
                   <div 
-                    id="about"
+                    id="email"
                     className="p-2">
-                    <h1 className="text-xl">Bio: </h1>
+                    <h1 className="text-xl">Email: </h1>
                   </div>
               </div>
             </div>
