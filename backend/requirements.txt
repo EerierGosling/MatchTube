@@ -1,0 +1,8 @@
+Flask==2.3.2
+numpy==1.24.3
+pymongo==4.2.0
+sentence-transformers==2.2.2
+chromadb==0.3.21
+google-api-python-client==2.80.0
+youtube-transcript-api==0.4.1
+python-dotenv==1.0.0

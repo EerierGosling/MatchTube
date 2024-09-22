@@ -1,5 +1,5 @@
 from flask import Flask
-from propelauth import init_auth
+from propelauth_py import init_base_auth
 import os
 
 def create_app():
@@ -18,7 +18,7 @@ def create_app():
     app.auth = auth
 
     # Import and register blueprints
-    from ..routes import main as main_blueprint
+    from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     return app
