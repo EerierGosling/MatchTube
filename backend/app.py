@@ -2,7 +2,7 @@ from flask import Flask
 from routes import init_routes  # Import your routes
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='build', static_url_path='')
 
 # Initialize routes
 init_routes(app)
