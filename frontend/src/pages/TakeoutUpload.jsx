@@ -29,15 +29,10 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         console.log(formData)
 
-        const controller = new AbortController();
-        const timeout = 500000;
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-
         try {
-            const response = await fetch('http://10.226.36.119:5001/upload', {
+            const response = await fetch('https://pennapps-project.onrender.com/upload', {
                 method: 'POST',
-                body: formData,
-                signal: controller.signal
+                body: formData
             });
             
             if (!response.ok) {
