@@ -1,8 +1,10 @@
+import { withAuthInfo, useAuthInfo } from "@propelauth/react";
 import "../App.css";
 import "../input.css";
 
 
-export default function Layout() {
+const Main = withAuthInfo((props) => {
+  const auth = useAuthInfo();
 
   setTimeout(() => {
     hide(document.getElementById('matchProfile'));
@@ -15,12 +17,44 @@ export default function Layout() {
   }
 
   function matchMe() {
+    // Send a get request to https://pennapps-project.onrender.com/user/{props.user.email}
+    // The response will be the email of a match
+    fetch(`https://pennapps-project.onrender.com/user/${props.user.email}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Match email:", data.closest_user);
+        
+        // Look up the match's profile
+        let match = auth.fetchUserMetadataByEmail(
+          "sofiacegan@gmail.com",
+          true // includeOrgs
+        );
+        console.log(match);
+
+        document.getElementById('matchProfile').querySelector("p").innerText = match.firstName + " " + match.lastName;
+        document.getElementById('matchProfile').querySelector("img").src = match.pictureUrl;
+      })
+      .catch((error) => {
+        console.error("Error fetching match email:", error);
+      });
+
+    let match = auth.fetchUserMetadataByEmail(
+        "sofiacegan@gmail.com",
+        true // includeOrgs
+    );
+    console.log(match);
+
+    document.getElementById("matchProfile").querySelector("p").innerText =
+        match.firstName + " " + match.lastName;
+    document.getElementById("matchProfile").querySelector("img").src =
+        match.pictureUrl;
+
     const arrow = document.getElementById('arrow');
     arrow.classList.add('transition', 'duration-300', 'transform', 'translate-x-16', 'ease-in-out');
 
     setTimeout(() => {
       document.getElementById('matchProfile').style.visibility = 'visible';
-      document.getElementById('reason').style.visibility = 'visible';
+      // document.getElementById('reason').style.visibility = 'visible';
     }, 400);
   }
 
@@ -50,7 +84,8 @@ export default function Layout() {
                   <div 
                     id="profileImage" 
                     className="bg-grey w-80 h-48 px-2 pt-6 flex items-end">
-                    <p className="text-3xl pb-1">Name</p>
+                    <img src={props.user.pictureUrl} alt="profile" />
+                    <p className="text-3xl pb-1">{props.user.firstName + " " + props.user.lastName}</p>
                   </div>
                   <div 
                     id="about"
@@ -73,6 +108,7 @@ export default function Layout() {
                   <div 
                     id="profileImage" 
                     className="bg-grey w-80 h-48 px-2 pt-6 flex items-end">
+                    <img src="" alt="profile" />
                     <p className="text-3xl pb-1">Name</p>
                   </div>
                   <div 
@@ -101,4 +137,6 @@ export default function Layout() {
         </div>
     </div>
   );
-}
+})
+
+export default Main;
