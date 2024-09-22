@@ -29,25 +29,12 @@ const TakeoutUpload = withAuthInfo((props) => {
 
         console.log(formData)
 
-        try {
-            const response = await fetch('https://pennapps-project.onrender.com/upload', {
+        fetch('https://pennapps-project.onrender.com/upload', 
+            {
                 method: 'POST',
                 body: formData
-            });
-            
-            if (!response.ok) {
-                setResponseMessage("Upload Failed");
-                console.error(response.message)
             }
-            else {
-                console.log("uploaded!")
-                history.push('/main');
-            }
-            
-        } catch (error) {
-            console.error('Error uploading file:', error);
-            setResponseMessage('File upload failed.');
-        }
+        )
     };
 
     return (
