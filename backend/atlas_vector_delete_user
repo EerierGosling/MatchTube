@@ -1,0 +1,40 @@
+import os
+from pymongo import MongoClient
+import dotenv
+
+# Load environment variables
+dotenv.load_dotenv()
+
+# Load MongoDB password from environment variable
+MONGODB_PASSWORD = os.getenv("MONGODB_PASSWORD")
+
+# Connect to MongoDB Atlas
+client = MongoClient(
+    f"mongodb+srv://testing_user:{MONGODB_PASSWORD}@userdata.r3vkc.mongodb.net/?retryWrites=true&w=majority&appName=UserData"
+)
+db = client["matchtube"]
+collection = db["youtube"]
+
+
+# Function to delete a specific user by user_id
+def delete_user(user_id):
+    # Try to find the user first
+    user = collection.find_one({"user_id": user_id})
+
+    if user:
+        # Delete the user from the collection
+        result = collection.delete_one({"user_id": user_id})
+        if result.deleted_count > 0:
+            print(f"User {user_id} successfully deleted.")
+        else:
+            print(f"Failed to delete user {user_id}.")
+    else:
+        print(f"User {user_id} not found in the database.")
+
+
+if __name__ == "__main__":
+    # Specify the user_id to delete
+    user_id_to_delete = "sofiacegan@gmail.com"  # Replace with the actual user_id
+
+    # Call the function to delete the user
+    delete_user(user_id_to_delete)
