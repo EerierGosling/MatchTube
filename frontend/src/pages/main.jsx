@@ -23,9 +23,10 @@ const Main = withAuthInfo((props) => {
     console.log("Matching...");
     // Send a get request to https://pennapps-project.onrender.com/user/{props.user.email}
     // The response will be the email of a match
-    fetch(`http://127.0.0.1:5001/user/${props.user.email}`)
+    fetch(`http://localhost:5001/user/${props.user.email}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log("Match data:", data);
         console.log("Match email:", data.closest_user);
         const matchEmail = data.closest_user;
         setEmail(matchEmail);
@@ -33,7 +34,7 @@ const Main = withAuthInfo((props) => {
         console.log("setEmail");
   
         // Use matchEmail directly instead of waiting for state update
-        fetch(`http://127.0.0.1:5001/user-info/${matchEmail}`)
+        fetch(`http://localhost:5001/user-info/${matchEmail}`)
           .then((response) => response.json())
           .then((data) => {
             setName(data.name);
