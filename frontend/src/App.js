@@ -1,7 +1,7 @@
 import PropelAuth from './components/PropelAuth';
 import logo from './logo.svg';
 import './output.css';
-import TakeoutUpload from './TakeoutUpload';
+import TakeoutUpload from './pages/TakeoutUpload';
 
 function App() {
   return (
