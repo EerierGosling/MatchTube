@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropelAuth from './components/PropelAuth';
+import {
+    withAuthInfo,
+    useRedirectFunctions,
+    useLogoutFunction,
+} from "@propelauth/react";
 
-const TakeoutUpload = () => {
+const TakeoutUpload = withAuthInfo((props) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [responseMessage, setResponseMessage] = useState('');
 
@@ -20,9 +25,12 @@ const TakeoutUpload = () => {
 
         const formData = new FormData();
         formData.append('file', selectedFile);
+        formData.append('email', props.user.email)
+
+        console.log(formData)
 
         try {
-            const response = await fetch('https://pennapps-project.onrender.com/upload', {
+            const response = await fetch('http://10.226.242.57:5001/upload', { //https://pennapps-project.onrender.com
                 method: 'POST',
                 body: formData,
             });
@@ -63,6 +71,6 @@ const TakeoutUpload = () => {
             </div>
         </div>
     );
-};
+});
 
 export default TakeoutUpload;

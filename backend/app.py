@@ -1,10 +1,9 @@
 from flask import Flask
 from routes import init_routes  # Import your routes
+from flask_cors import CORS
 
 app = Flask(__name__)
-
-# Any config settings or environment variables can be set here
-app.config['UPLOAD_FOLDER'] = 'uploads'
+CORS(app)  # This will allow all domains; customize it for production
 
 # Initialize routes
 init_routes(app)
